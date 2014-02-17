@@ -1,0 +1,84 @@
+doctype html
+//[if IE 9]><html class="lt-ie10" lang="en" > <![endif]
+html(class='no-js', lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Gadget Express
+    link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='stylesheet', href='/css/foundation.css')
+    link(rel='stylesheet', href='/css/app.css')
+    script(src='/js/vendor/modernizr.js')
+  body
+    .row
+      .small-12.columns
+        h1 Gadget Express - "We Sell Gadgets"
+    .row
+      .small-12.columns
+        form#inputuser
+          fieldset
+            legend Create A Customer
+            .row
+              .small-12.columns
+                .row
+                  .small-4.columns
+                    label Customer Name
+                    input#username(type='text', name='username', placeholder='Abe Lincoln', autofocus='true')
+                  .small-4.columns
+                    label Deposit
+                    input#deposit(type='text', name='balance', placeholder='500')
+                  .small-4.columns
+                    label &nbsp;
+                    button.radius.tiny#createuser Create User
+      .small-12.columns
+        h2 Current Customers
+        .small-12.columns
+          table
+            thead
+              th Customer
+              th Balance
+              th Purchases
+            tbody#users
+    .row
+      .small-12.columns
+        form#inputgadget
+          fieldset
+            legend Create A Gadget
+            .row
+              .small-12.columns
+                .row
+                  .small-3.columns
+                    label Gadget Name
+                    input#gadget(type='text', name='name', placeholder='Quill Pen')
+                  .small-3.columns
+                    label Color
+                    input#color(type='text', name='color', placeholder='Haystack Yellow')
+                  .small-2.columns
+                    label Cost
+                    input#cost(type='text', name='cost', placeholder='500')
+                  .small-2.columns
+                    label Quantity
+                    input#amount(type='text', name='quantity', placeholder='100')
+                  .small-2.columns
+                    label &nbsp;
+                    button.radius.tiny#creategadget Create Gadget
+    .row
+      .small-12.columns
+        h2 Purchase Gadgets
+        table
+          thead
+            th.hidden
+            th Gadget
+            th Cost
+            th Quantity
+            th.hidden
+            th.hidden
+            th.hidden
+          tbody#purchasedirectory
+
+
+    script(src='/js/vendor/jquery.js')
+    script(src='/js/vendor/foundation.js')
+    script(src='/js/vendor/lodash.js')
+    script(src='/js/source/main.js')
+

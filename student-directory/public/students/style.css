@@ -1,0 +1,32 @@
+/* Style Sheet for the last-first.html */
+
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,700);
+@import url(http://fonts.googleapis.com/css?family=Istok+Web);
+
+#wrapper {
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+h1 {
+  border: 5px solid tomato;
+  background-color: tomato;
+  border-radius: 15px;
+  text-align: center;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+header li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+}

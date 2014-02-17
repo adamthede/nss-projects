@@ -1,0 +1,15 @@
+body {
+  background-color: white;
+}
+h1 {
+  color: #015666;
+}
+h2 {
+  color: #206876;
+}
+table {
+  width: 100%;
+}
+.hide {
+  display: none;
+}

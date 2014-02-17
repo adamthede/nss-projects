@@ -1,0 +1,13 @@
+body {
+  margin-right: 20%;
+  margin-left: 20%;
+}
+td {
+  border: 1px dotted orchid;
+  padding: 35px;
+  font-size: 24px;
+  background-color: lavender;
+}
+#gameboard {
+  margin-top: 15px;
+}

@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Memory Game
+    link(rel='stylesheet', href='css/normalize.css')
+    link(rel='stylesheet', href='css/style.css')
+    script(src='/js/vendor/jquery.js')
+    script(src='/js/source/main.js')
+  body
+    header
+    h1 Memory Game - Good Freakin' Luck
+    button#play PLAY
+    button#reset RESET
+    #gameboard
+      table
+        tbody
+          tr
+            td.card#0
+            td.card#1
+            td.card#2
+            td.card#3
+          tr
+            td.card#4
+            td.card#5
+            td.card#6
+            td.card#7
+          tr
+            td.card#8
+            td.card#9
+            td.card#10
+            td.card#11
+          tr
+            td.card#12
+            td.card#13
+            td.card#14
+            td.card#15
+          tr
+            td.card#16
+            td.card#17
+            td.card#18
+            td.card#19
+    #status
