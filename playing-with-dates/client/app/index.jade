@@ -1,0 +1,29 @@
+doctype html
+//[if IE 9]><html class="lt-ie10" lang="en" > <![endif]
+html(class='no-js', lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Playing With Dates
+    link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='stylesheet', href='/css/foundation.css')
+    link(rel='stylesheet', href='/css/app.css')
+    script(src='/js/vendor/modernizr.js')
+    script(src='/js/vendor/moment.js')
+    script moment().format()
+  body
+    .row
+      .small-12.columns
+        h1 Playing With Dates
+    .row
+      .small-4.columns
+        input(type='date', name='dueDate')
+      .small-8.columns
+        #momentstuff
+
+
+    script(src='/js/vendor/jquery.js')
+    script(src='/js/vendor/foundation.js')
+    script(src='/js/vendor/lodash.js')
+    script(src='/js/source/main.js')
+
