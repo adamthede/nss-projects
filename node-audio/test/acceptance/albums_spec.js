@@ -20,23 +20,29 @@ describe('albums', function(){
 
   beforeEach(function(done){
     var testdir = __dirname + '/../../app/static/img/test*';
+    var songdir = __dirname + '/../../app/static/audios/test*';
     var cmd = 'rm -rf ' + testdir;
+    var cmd1 = 'rm -rf ' + songdir;
 
     exec(cmd, function(){
       var origfile = __dirname + '/../fixtures/test-album-cover.jpg';
       var copy1file = __dirname + '/../fixtures/test-album-cover-copy1.jpg';
       var copy2file = __dirname + '/../fixtures/test-album-cover-copy2.jpg';
+      fs.createReadStream(origfile).pipe(fs.createWriteStream(copy1file));
+      fs.createReadStream(origfile).pipe(fs.createWriteStream(copy2file));
+    });
+
+    exec(cmd1, function(){
       var origsong = __dirname + '/../fixtures/song.mp3';
       var copy1song = __dirname + '/../fixtures/song-copy1.mp3';
       var copy2song = __dirname + '/../fixtures/song-copy2.mp3';
-      fs.createReadStream(origfile).pipe(fs.createWriteStream(copy1file));
-      fs.createReadStream(origfile).pipe(fs.createWriteStream(copy2file));
       fs.createReadStream(origsong).pipe(fs.createWriteStream(copy1song));
       fs.createReadStream(origsong).pipe(fs.createWriteStream(copy2song));
       global.nss.db.dropDatabase(function(err, result){
         done();
       });
     });
+
   });
 
   describe('GET /', function(){

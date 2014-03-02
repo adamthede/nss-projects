@@ -7,6 +7,7 @@ var fs = require('fs');
 var path = require('path');
 var Mongo = require('mongodb');
 var _ = require('lodash');
+var id3 = require('id3js');
 
 function Album(album){
   this.title = album.title;
@@ -29,6 +30,7 @@ Album.prototype.addCover = function(oldpath){
 };
 
 Album.prototype.addSong = function(oldpath, fileName){
+  var self = this;
   var songTitle = fileName.replace(/\s/g, '').toLowerCase();
   var albumTitle = this.title.replace(/\s/g, '').toLowerCase();
   var abspath = __dirname + '/../static';
@@ -37,7 +39,10 @@ Album.prototype.addSong = function(oldpath, fileName){
 
   fs.renameSync(oldpath, abspath + relpath);
 
-  this.songs.push(relpath);
+  id3({file:abspath+relpath, type:id3.OPEN_LOCAL}, function(err, tags){
+    self.songs.push({songfile:relpath, songtags:tags});
+    console.log(self.songs);
+  });
 };
 
 Album.prototype.insert = function(fn){
