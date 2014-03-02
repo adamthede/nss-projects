@@ -18,17 +18,22 @@ describe('Album', function(){
 
   beforeEach(function(done){
     var testdir = __dirname + '/../../app/static/img/test*';
+    var songdir = __dirname + '/../../app/static/audios/test*';
     var cmd = 'rm -rf ' + testdir;
+    var cmd1 = 'rm -rf ' + songdir;
 
     exec(cmd, function(){
       var origfile = __dirname + '/../fixtures/test-album-cover.jpg';
       var copy1file = __dirname + '/../fixtures/test-album-cover-copy1.jpg';
       var copy2file = __dirname + '/../fixtures/test-album-cover-copy2.jpg';
-      var origsong = __dirname + '/../fixtures/song.mp3';
-      var copy1song = __dirname + '/../fixtures/song-copy1.mp3';
-      var copy2song = __dirname + '/../fixtures/song-copy2.mp3';
       fs.createReadStream(origfile).pipe(fs.createWriteStream(copy1file));
       fs.createReadStream(origfile).pipe(fs.createWriteStream(copy2file));
+    });
+
+    exec(cmd1, function(){
+      var origsong = __dirname + '/../fixtures/test-song.mp3';
+      var copy1song = __dirname + '/../fixtures/test-song-copy1.mp3';
+      var copy2song = __dirname + '/../fixtures/test-song-copy2.mp3';
       fs.createReadStream(origsong).pipe(fs.createWriteStream(copy1song));
       fs.createReadStream(origsong).pipe(fs.createWriteStream(copy2song));
       global.nss.db.dropDatabase(function(err, result){
@@ -60,13 +65,16 @@ describe('Album', function(){
     it('should add a song to the Album', function(done){
       var a1 = new Album({title:'Test Thriller', artist:'Test Michael Jackson', releaseyear:'1982-05-01'});
       var oldname = __dirname + '/../fixtures/test-album-cover-copy1.jpg';
-      var oldname2 = __dirname + '/../fixtures/song-copy1.mp3';
-      var fileName = 'thriller.mp3';
+      var oldname2 = __dirname + '/../fixtures/test-song-copy1.mp3';
+      var fileName = 'mysong.mp3';
       a1.addCover(oldname);
-      a1.addSong(oldname2, fileName);
-      a1.insert(function(){
-        expect(a1.songs).to.have.length(1);
-        done();
+      a1.parseTags(oldname2, fileName, function(tagObj){
+        a1.addSong(tagObj);
+        a1.insert(function(err){
+          expect(a1._id.toString()).to.have.length(24);
+          expect(a1.songs).to.have.length(1);
+          done();
+        });
       });
     });
   });
@@ -145,4 +153,3 @@ describe('Album', function(){
     });
   });
 });
-

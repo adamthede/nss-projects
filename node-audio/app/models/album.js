@@ -29,8 +29,12 @@ Album.prototype.addCover = function(oldpath){
   this.cover = relpath;
 };
 
-Album.prototype.addSong = function(oldpath, fileName){
-  var self = this;
+Album.prototype.addSong = function(tagObj){
+  console.log(tagObj);
+  this.songs.push(tagObj);
+};
+
+Album.prototype.parseTags = function(oldpath, fileName, fn){
   var songTitle = fileName.replace(/\s/g, '').toLowerCase();
   var albumTitle = this.title.replace(/\s/g, '').toLowerCase();
   var abspath = __dirname + '/../static';
@@ -39,9 +43,8 @@ Album.prototype.addSong = function(oldpath, fileName){
 
   fs.renameSync(oldpath, abspath + relpath);
 
-  id3({file:abspath+relpath, type:id3.OPEN_LOCAL}, function(err, tags){
-    self.songs.push({songfile:relpath, songtags:tags});
-    console.log(self.songs);
+  id3({file:abspath + relpath, type:id3.OPEN_LOCAL}, function(err, tags){
+    fn({songfile:relpath, title:tags.title, artist:tags.artist});
   });
 };
 

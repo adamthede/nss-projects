@@ -18,6 +18,6 @@
   "browser": true,
   "jquery": true,
   "validthis": true,
-  "globals": {"_":true, "moment":true, "describe":true, "it":true, "before":true, "after":true, "beforeEach":true, "afterEach":true}
+  "globals": {"_":true, "moment":true, "describe":true, "it":true, "before":true, "after":true, "beforeEach":true, "afterEach":true, "ID3":true}
 }
 

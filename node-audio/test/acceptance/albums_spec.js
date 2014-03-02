@@ -33,9 +33,9 @@ describe('albums', function(){
     });
 
     exec(cmd1, function(){
-      var origsong = __dirname + '/../fixtures/song.mp3';
-      var copy1song = __dirname + '/../fixtures/song-copy1.mp3';
-      var copy2song = __dirname + '/../fixtures/song-copy2.mp3';
+      var origsong = __dirname + '/../fixtures/test-song.mp3';
+      var copy1song = __dirname + '/../fixtures/test-song-copy1.mp3';
+      var copy2song = __dirname + '/../fixtures/test-song-copy2.mp3';
       fs.createReadStream(origsong).pipe(fs.createWriteStream(copy1song));
       fs.createReadStream(origsong).pipe(fs.createWriteStream(copy2song));
       global.nss.db.dropDatabase(function(err, result){
@@ -64,7 +64,6 @@ describe('albums', function(){
       a1.insert(function(){
         a2.insert(function(){
           a3.insert(function(){
-            console.log(a1._id);
             done();
           });
         });
@@ -112,7 +111,7 @@ describe('albums', function(){
     });
 
     it('should add a song to the album', function(done){
-      var filename = __dirname + '/../fixtures/song-copy1.mp3';
+      var filename = __dirname + '/../fixtures/test-song-copy1.mp3';
       request(app)
       .post('/albums/' + a1._id.toString())
       .attach('song', filename)
@@ -120,4 +119,3 @@ describe('albums', function(){
     });
   });
 });
-
